@@ -2,34 +2,19 @@
 // Return an array of all deposits greater than 100
 // Array example: bankAccounts in /data/data.js
 // getAllDepositsGreaterThanOneHundred(bankAccounts) => [3432, 43242.34, 23432]
-export const bankAccounts = [
-  {
-    id: 1,
-    name: "Susan",
-    balance: 100.32,
-    deposits: [150, 30, 221],
-    withdrawals: [110, 70.68, 120],
-  },
-  { id: 2, name: "Morgan", balance: 1100.0, deposits: [1100] },
-  {
-    id: 3,
-    name: "Joshua",
-    balance: 18456.57,
-    deposits: [4000, 5000, 6000, 9200, 256.57],
-    withdrawals: [1500, 1400, 1500, 1500],
-  },
-  { id: 4, name: "Candy", balance: 0.0 },
-  { id: 5, name: "Phil", balance: 18, deposits: [100, 18], withdrawals: [100] },
-];
 
 export function getAllDepositsGreaterThanOneHundred(array) {
   // Your code goes here...
-  let highest = -Infinity;
-  let highestArray = null;
+  const results = [];
   for (let i = 0; i < array.length; i++) {
-    const deposit = array[i].deposits || [0];
-    for (let j = 0; j < deposit.length; j++) {}
+    const deposit = Array.isArray(array[i].deposits) ? array[i].deposits : [];
+    for (let j = 0; j < deposit.length; j++) {
+      if (deposit[j] > 100) {
+        results.push(deposit[j]);
+      }
+    }
   }
+  return results;
 }
 
 console.log(getAllDepositsGreaterThanOneHundred(bankAccounts));
